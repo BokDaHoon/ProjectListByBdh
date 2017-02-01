@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_waiting_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/detail_title"
+                android:background="@drawable/edittext_bg"
+                android:layout_margin="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/label_time_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_waiting_time"
+                android:gravity="start"
+                android:text="시간 선택"
+                android:layout_marginLeft="15dp"/>
+
+            <com.bignerdranch.android.alarmapp.Utility.CustomTimePicker
+                android:id="@+id/time_set_timepicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_time_select"
+                android:background="@drawable/edittext_bg"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:textSize="30sp"
+                android:timePickerMode="spinner"/>
+
+            <TextView
+                android:id="@+id/label_repeat_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/time_set_timepicker"
+                android:gravity="start"
+                android:text="요일 반복"
+                android:layout_marginLeft="15dp"/>
+
+            <LinearLayout
+                android:id="@+id/container_day_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/label_repeat_day">
+
+                <ToggleButton
+                    android:id="@+id/repeat_day_sun"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/round_button_off"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textOn="@string/sun_label"
+                    android:textOff="@string/sun_label"
+                    android:textColor="@color/red"/>
+
+                <ToggleButton
+                    android:id="@+id/repeat_day_mon"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/round_button_off"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textOn="@string/mon_label"
+                    android:textOff="@string/mon_label"/>
+
+                <ToggleButton
+                    android:id="@+id/repeat_day_tue"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/round_button_off"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textOn="@string/tue_label"
+                    android:textOff="@string/tue_label"/>
+
+                <ToggleButton
+                    android:id="@+id/repeat_day_wed"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/round_button_off"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textOn="@string/wed_label"
+                    android:textOff="@string/wed_label"/>
+
+                <ToggleButton
+                    android:id="@+id/repeat_day_thu"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/round_button_off"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textOn="@string/thu_label"
+                    android:textOff="@string/thu_label"/>
+
+                <ToggleButton
+                    android:id="@+id/repeat_day_fri"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/round_button_off"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textOn="@string/fri_label"
+                    android:textOff="@string/fri_label"/>
+
+                <ToggleButton
+                    android:id="@+id/repeat_day_sat"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/round_button_off"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:textOn="@string/sat_label"
+                    android:textOff="@string/sat_label"
+                    android:textColor="@color/blue"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/label_memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/container_day_select"
+                android:gravity="start"
+                android:text="@string/memo_label"
+                android:layout_marginLeft="15dp"/>
+
+            <EditText
+                android:id="@+id/edit_memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_memo"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:scrollbars="vertical"
+                android:hint="메모할 내용을 입력하세요."
+                android:textSize="15sp"
+                android:background="@drawable/edittext_bg"
+                android:gravity="start|top"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/label_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edit_memo"
+                android:gravity="start"
+                android:text="@string/map_label"
+                android:layout_marginLeft="15dp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/label_map">
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </FrameLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

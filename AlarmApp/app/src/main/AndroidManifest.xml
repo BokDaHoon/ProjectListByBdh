@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.bignerdranch.android.alarmapp">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <permission android:protectionLevel="signature"
+                android:name="com.bignerdranch.android.alarmapp.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.bignerdranch.android.alarmapp.permission.C2D_MESSAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:supportsRtl="true"
+        android:windowSoftInputMode="adjustPan"
+        android:name=".AlarmApp">
+        <activity android:name=".ListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".DetailActivity">
+        </activity>
+        <receiver android:name=".Receiver.AlarmBroadCastReceiver"
+                  android:enabled="true"
+                  android:exported="false">
+        </receiver>
+        <receiver android:name=".Receiver.AlarmRebootReceiver"
+                  android:enabled="true"
+                  android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <provider
+            android:name=".DB.AlarmContentProvider"
+            android:authorities="com.bignerdranch.android.alarmapp"
+            android:exported="false"
+            />
+        <service
+            android:name=".Service.AlarmTaskService"
+            android:exported="false"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key"/>
+
+    </application>
+
+</manifest>
