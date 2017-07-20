@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="kr.co.lotte.mapper.SurveyMapper">
+ 
+    <select id="selectBodyInfo" parameterType="hashmap" resultType="hashmap">
+    	SELECT
+			MEMBER_ID ,
+			CODE_VALUE ,
+			VALUE
+    	FROM
+    		MEMBER_BODY_INFO
+    	WHERE
+    		MEMBER_ID = #{ID}
+    </select>
+    
+    <select id="selectBodyInfoItem" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			CODE_NM ,
+			CODE_VALUE ,
+			CODE_DESC
+		FROM
+			COMMON_CODE
+		WHERE
+			CODE_ID = 'CMM002'
+		ORDER BY
+			CODE_VALUE ASC
+    </select>
+    
+    <select id="selectPrdClass" resultType="hashmap">
+    	SELECT
+		  LCLS_ID ,
+		  LCLS_NM ,
+		  MCLS_ID ,
+		  MCLS_NM 
+		FROM
+		  CLS_MST
+		GROUP BY
+		  LCLS_ID ,
+		  LCLS_NM ,
+		  MCLS_ID ,
+		  MCLS_NM 
+		ORDER BY
+		  LCLS_ID , 
+		  MCLS_ID ASC
+    </select>
+    
+    <delete id="initBodyInfo" parameterType="hashmap">
+    	DELETE FROM 
+    		MEMBER_BODY_INFO
+    	WHERE
+    		MEMBER_ID = #{ID}    	
+    </delete>
+    
+    <delete id="initSurveyData" parameterType="hashmap">
+    	DELETE FROM 
+    		PERSON_FAVR
+    	WHERE
+    		MEMBER_ID = #{ID}    	
+    </delete>
+    
+    <insert id="putBodyInfo" parameterType="hashmap">
+    	INSERT INTO
+    		MEMBER_BODY_INFO
+    	VALUES (
+    		#{ID},
+    		#{CODE_VALUE},
+    		#{VALUE}
+    	)
+    </insert>
+    
+    <insert id="putSurveyData" parameterType="hashmap">
+    	INSERT INTO
+    		PERSON_FAVR
+    	VALUES (
+    		#{ID},
+    		#{LCLS_ID},
+    		#{MCLS_ID}
+    	)
+    </insert>
+    
+    <select id="checkSurveyItem" parameterType="hashmap" resultType="hashmap">
+    	SELECT
+			MEMBER_ID,
+			LCLS_ID,
+			MCLS_ID
+    	FROM
+    		PERSON_FAVR
+    	WHERE
+    		MEMBER_ID = #{ID}
+    </select>
+ 
+</mapper>

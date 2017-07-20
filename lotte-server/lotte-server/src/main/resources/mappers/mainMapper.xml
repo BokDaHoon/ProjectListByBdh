@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="kr.co.lotte.mapper.MainMapper">
+ 
+    <select id="selectProductsList" parameterType="hashmap" resultType="hashmap">
+    	SELECT
+			PRD_ID ,
+			PRD_NM ,
+			PRD_IMG_URL ,
+			PRICE ,
+			LCLS_ID ,
+			MCLS_ID ,
+			SCLS_ID
+    	FROM
+    		PRODUCT
+		WHERE
+			(LCLS_ID, MCLS_ID) IN (SELECT LCLS_ID, MCLS_ID FROM PERSON_FAVR WHERE MEMBER_ID = #{ID})
+
+		UNION
+		
+		SELECT 
+			PRD_ID ,
+			PRD_NM ,
+			PRD_IMG_URL ,
+			PRICE ,
+			LCLS_ID ,
+			MCLS_ID ,
+			SCLS_ID
+		FROM
+			PRODUCT
+		WHERE
+			(LCLS_ID, MCLS_ID) IN (SELECT LCLS_ID, MCLS_ID FROM PRODUCT A, ORDER_LIST B WHERE A.PRD_ID = B.PRD_ID AND B.MBR_ID = #{ID})
+    </select>
+ 
+</mapper>
